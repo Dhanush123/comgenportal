@@ -1,5 +1,4 @@
-import React, { useContext } from "react";
-import { useHistory } from "react-router-dom";
+import React from "react";
 import { withRouter } from "react-router";
 import { getGithubAccessTokenFromCode } from "../requests/githubAuth";
 import { AuthContext } from "../context";
@@ -8,7 +7,7 @@ class LoginCallbackFunction extends React.Component {
   //https://reactjs.org/docs/context.html
   //https://reactjs.org/docs/hooks-reference.html
   componentWillMount() {
-    const { match, location, history } = this.props;
+    const { location, history } = this.props;
     let url = new URL(`localhost:${process.env.PORT}/${location.search}`);
     let code = url.searchParams.get("code");
     let state = url.searchParams.get("state");
