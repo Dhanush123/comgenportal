@@ -1,12 +1,12 @@
 import React from "react";
 import { withRouter } from "react-router";
-import { getGithubAccessTokenFromCode } from "../requests/githubAuth";
+import { getGithubAccessTokenFromCode } from "../requests/github";
 import { AuthContext } from "../context";
 
 class LoginCallbackFunction extends React.Component {
   //https://reactjs.org/docs/context.html
   //https://reactjs.org/docs/hooks-reference.html
-  componentWillMount() {
+  componentDidMount() {
     const { location, history } = this.props;
     let url = new URL(`localhost:${process.env.PORT}/${location.search}`);
     let code = url.searchParams.get("code");
@@ -14,6 +14,7 @@ class LoginCallbackFunction extends React.Component {
     getGithubAccessTokenFromCode(code, state)
       .then((res) => {
         console.log("getGithubAccessTokenFromCode", res);
+        window.sessionStorage.setItem("access_token", res.data.access_token);
         this.setState({ isAuthenticated: true });
         this.context.toggleAuth();
         history.push("/repos");

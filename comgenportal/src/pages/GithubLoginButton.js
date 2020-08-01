@@ -2,7 +2,7 @@ import React from "react";
 import GithubButton from "react-github-login-button";
 
 import { AuthContext } from "../context";
-import { createGithubLoginUrl } from "../requests/githubAuth";
+import { createGithubLoginUrl } from "../requests/github";
 
 const GithubLoginButton = () => {
   return (
