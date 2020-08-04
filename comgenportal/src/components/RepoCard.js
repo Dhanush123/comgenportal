@@ -21,9 +21,9 @@ const useStyles = makeStyles((theme) => ({
 
 const RepoCard = (props) => {
   const classes = useStyles();
-  const { id, name, html_url, stargazers_count } = props.repo;
+  const { id, name, html_url, stargazers_count, tracking } = props.repo;
   const [state, setState] = React.useState({
-    toggleStatus: false,
+    toggleStatus: tracking,
   });
 
   const handleChange = ({ target: { name, checked } }) => {
@@ -45,7 +45,7 @@ const RepoCard = (props) => {
       <Card variant="outlined">
         <CardContent>
           <Typography variant="h5" component="h2">
-            {name} {stargazers_count}
+            {name}
             <Badge badgeContent={stargazers_count} color="secondary">
               <StarIcon />
             </Badge>
